@@ -8,7 +8,8 @@ Blockchain = new Merkle();
 var transacciones_global = "";
 var global_file_reader = new FileReader();
 
-var inter_blockchain = setInterval(Blockchain_periodico,300000);
+var tiempo_intervalo = 300000;
+var inter_blockchain = setInterval(Blockchain_periodico,tiempo_intervalo);
 
 
 
@@ -26,7 +27,7 @@ function acceso(){
 	var username = document.getElementById('login-nombre');
 	var pass = document.getElementById('login-pass');
 	var admin = document.getElementById('login-admin');
-	encontrado = Lista_usuarios.buscar_usuario(username.value,sha256(pass.value));
+	encontrado = Lista_clientes.buscar_cliente(username.value,sha256(pass.value));
 
 	username.value = "";
 	pass.value = "";
@@ -55,11 +56,11 @@ function registro(){
 	var username = document.getElementById("registro_username");
 	var password = document.getElementById("registro_password");
 	var phone = document.getElementById("registro_phone");
-
+	var correo = document.getElementById("registro_correo");
 	encript = sha256(password.value);
 
-	let nuevo_us = new Usuario(dpi.value,name.value,username.value,encript,phone.value,false);
-	Lista_usuarios.poner(nuevo_us)
+	let nuevo_us = new Cliente(dpi.value,name.value,username.value,encript,phone.value, correo.value ,false);
+	Lista_clientes.poner(nuevo_us)
 
 	dpi.value = "";
 	name.value = "";
@@ -256,6 +257,7 @@ function cambiar_puntuacion(id_pelicula){
 	var rating = document.getElementById("us_info_estrellas");
 	tmp.puntuacion = rating.value;
 }
+
 function publicar_comentario(id_pelicula){
 	var tmp = Arbol_peliculas.buscar(id_pelicula);
 	var mensaje = document.getElementById("us_info_comentario");
@@ -322,6 +324,13 @@ function admin_cargar_block(){
 	var cards = Blockchain.generar_html();
 	crear_objeto("data_block_container",cards);
 	Blockchain.graficar_merkle();
+}
+
+function cambiar_intervalo(){
+	var tiempo = document.getElementById("cambiar_periodico");
+	clearInterval(inter_blockchain);
+	tiempo_intervalo = tiempo.value*1000;
+	inter_blockchain = setInterval(Blockchain_periodico,tiempo_intervalo);
 }
 
 function alquilar(pelicula){

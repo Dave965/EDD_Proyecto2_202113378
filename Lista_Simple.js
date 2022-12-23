@@ -36,17 +36,6 @@ class Lista_simple{
 		}
 		return num;
 	}
-	
-	buscar_artista(artista){
-		let tmp = this.cabeza;
-		while(tmp != null){
-			if(tmp.data.nombre == artista){
-				return tmp.data;
-			}
-			tmp = tmp.sig
-		}
-		return 0;
-	}
 
 	buscar_cliente(usuario, password){
 		let tmp = this.cabeza;
