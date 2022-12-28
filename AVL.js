@@ -128,7 +128,7 @@ class AVL{
 	}
 
 	graficar_avl(){
-		var codigo_dot = "digraph G{\nlabel=\" Arbol de Actores \";\n";
+		var codigo_dot = "digraph G{\nlabel=\" Arbol de Peliculas \";\n";
 		var tmp = this.raiz;
 		var nodos = "";
 		var nulls = 0;

@@ -19,7 +19,7 @@ Lista_clientes.poner(primer_usuario);
 let current = 'paginaEntrar';
 let current_admin = 'Admin_graphs';
 let current_us = 'us_principal';
-var en_sesion = primer_usuario;
+var en_sesion = null;
 
 // funcion de botones
 
@@ -43,10 +43,12 @@ function acceso(){
 	if(admin.checked && encontrado.admin == true){
 		alert("entrando administrador");
 		cambiar_pagina("mainAdmin");
+		ir_admin_graph();
 	}
 	else{
 		alert("entrando usuario normal");
 		cambiar_pagina("mainUsuarios");
+		ir_us_principal();
 	}
 }
 
